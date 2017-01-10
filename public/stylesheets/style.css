@@ -1,0 +1,18 @@
+.container {
+  width: 80%;
+  margin: 15px auto;
+}
+
+h1 {
+  color: green;
+  text-align: center;
+}
+
+.nav-link-name {
+  color: #2ecc71 ;
+  font-size: 15px;
+}
+
+.nav-link {
+  font-size: 15px;
+}

@@ -1,0 +1,25 @@
+                   <div ng-repeat="expense in expenses">
+  <span>{{expense.category}}</span>
+    <span>{{expense.university}}</span>
+  <span>{{expense.body}}  by {{expense.author}}</span>
+
+</div>
+
+<button type="button" class="btn btn-primary btn-lg" >Add expense +</button>
+
+
+<form ng-submit="addExpense()">
+  <h3>Add a new Expense</h3>
+
+  <div class="form-group">
+    <input type="text" class="form-control" placeholder="Category" ng-model="category"></input>
+  </div>
+
+
+  <button type="submit" class="btn btn-primary">Post</button>
+</form>
+
+
+
+
+
