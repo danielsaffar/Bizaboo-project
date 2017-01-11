@@ -1,4 +1,4 @@
-var app = angular.module('bizaboo', ['ui.router']);
+var app = angular.module('bizaboo', ['ui.router','nvd3']);
 
 app.config(['$stateProvider','$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
   $stateProvider
