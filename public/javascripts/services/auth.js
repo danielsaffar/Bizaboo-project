@@ -1,6 +1,7 @@
 app.factory('auth', ['$http', '$window', function($http, $window){
    var auth = {
     currentUserdata : {}
+    
    };
 
    auth.logIn = function(user) {

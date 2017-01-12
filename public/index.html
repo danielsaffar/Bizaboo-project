@@ -4,12 +4,13 @@
 
   <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
   <script src="angular/angular.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/nvd3/1.8.1/nv.d3.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-nvd3/1.0.5/angular-nvd3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js" charset="utf-8"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/nvd3/1.8.5/nv.d3.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-nvd3/1.0.9/angular-nvd3.js"></script>
   <script src="angular-ui-router/release/angular-ui-router.min.js"></script>
 
 </head>
+<body ng-app="bizaboo" ng-controller="MainCtrl">
 
 <nav class="navbar custom-nav navbar-default navbar-static-top" ng-controller="NavCtrl">
  
@@ -51,7 +52,7 @@
    
 </nav>
 
-<body ng-app="bizaboo" ng-controller="MainCtrl">
+
   <div class="row">
     <div class="col-md-6 col-md-offset-3">
       <ui-view></ui-view>
