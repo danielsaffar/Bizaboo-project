@@ -18,7 +18,7 @@ app.config(['$stateProvider','$urlRouterProvider', function($stateProvider, $url
       controller: 'GroupCtrl',
       resolve: {
         postPromise: ['expenses', function(expenses){
-          return expenses.getAll2();
+          return expenses.getAllGroup();
         }]
        }
     })

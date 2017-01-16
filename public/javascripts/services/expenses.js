@@ -13,8 +13,8 @@ app.factory('expenses', ['$http','auth', function($http, auth) {
     },
 
 
-        getAll2: function(expenses) {
-      return $http.get('/group',{
+        getAllGroup: function() {
+      return $http.get('/group' ,{
          headers: {
           "Authorization": 'Bearer ' + auth.getToken()}
       }).then(function(data) {

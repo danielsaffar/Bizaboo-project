@@ -71,9 +71,10 @@ router.get('/expenses',auth, function(req, res, next) {
   });
 });
 
+
 router.get('/group',auth, function(req, res, next) {
-  var author_id= req.payload._id;
-    Expense.find({author_id:author_id},
+  // var author_id= req.payload._id;
+    Expense.find({group: 'arr'},
     
       function(err, expenses){
     if(err){ return next(err); }

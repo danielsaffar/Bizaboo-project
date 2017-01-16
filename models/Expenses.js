@@ -6,8 +6,7 @@ var ExpenseSchema = new mongoose.Schema({
   author: String,
   date:String,
   author_id:String,
-  // group: String,
-  group: { type: mongoose.Schema.Types.ObjectId, ref: 'Group' }
+  group: String
 
 })
   
