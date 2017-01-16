@@ -1,4 +1,4 @@
-app.controller('MainCtrl', ['$scope', 'expenses','auth','$http', function($scope, expenses,auth,$http){
+app.controller('GroupCtrl', ['$scope', 'expenses','auth', function($scope, expenses,auth){
   $scope.userinfo= expenses.expenses;
   var userData = [];
 
@@ -23,12 +23,8 @@ app.controller('MainCtrl', ['$scope', 'expenses','auth','$http', function($scope
               $scope.amount = '';
 })
               return true;
-
 };
-
-    
-
-  }
+     }
   return false;
 }
 
@@ -108,19 +104,4 @@ $scope.options = {
             }
         };
 
-
-    //Secure the Profile User    
-
-
-
-
-
-
-
-//creates the chart with test data...
-
-
-  // $scope.incrementUpvotes = function(item) {
-  //   posts.upvote(item);
-  // }
 }]);

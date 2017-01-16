@@ -5,7 +5,7 @@ var jwt = require('jsonwebtoken');
 var UserSchema = new mongoose.Schema({
   username: {type: String, lowercase: true, unique: true},
   email:String,
-  expenses: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Expense' }],
+  group:{ type: mongoose.Schema.Types.ObjectId, ref: 'Group' },
   hash: String,
   salt: String,
 
@@ -34,6 +34,8 @@ UserSchema.methods.generateJWT = function() {
     exp: parseInt(exp.getTime() / 1000),
   }, 'myLittleSecret');
 };
+
+
 
 var User = mongoose.model('User', UserSchema);
 

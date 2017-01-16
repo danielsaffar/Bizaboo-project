@@ -12,9 +12,44 @@ app.factory('expenses', ['$http','auth', function($http, auth) {
       });
     },
 
+
+        getAll2: function(expenses) {
+      return $http.get('/group',{
+         headers: {
+          "Authorization": 'Bearer ' + auth.getToken()}
+      }).then(function(data) {
+  
+        angular.copy(data.data, expenseService.expenses);
+      });
+    },
+
+
+
     get: function(id) {
       return $http.get('/expenses/' + id).then(function(res){
         return res.data;
+      });
+    },
+
+    // getSum: function() {
+    //   return $http.get('/expenses',{
+    //     headers: {
+    //       "Authorization":'Bearer' + auth.getToken()}
+    //   }).then(function(data) {
+    //     return data
+    //   })
+    // }
+
+    modify: function(expense) {
+      return $http.put('/expenses', expense).then(function(data){
+        // return data.data;
+        return $http.get('/expenses',{
+         headers: {
+          "Authorization": 'Bearer ' + auth.getToken()}
+      }).then(function(data) {
+  
+        angular.copy(data.data, expenseService.expenses);
+      });
       });
     },
 

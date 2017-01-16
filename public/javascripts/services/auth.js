@@ -7,6 +7,8 @@ app.factory('auth', ['$http', '$window', function($http, $window){
    auth.logIn = function(user) {
    	return $http.post('/login',user).then(function(data){
    		auth.saveToken(data.data.token);
+      auth.currentUserdata.group = data.data.user.group;
+
    	})
    		//if success state.go
 
@@ -23,7 +25,13 @@ app.factory('auth', ['$http', '$window', function($http, $window){
    auth.register = function (user) {
      return $http.post('/register', user).then(function(data){
           auth.saveToken(data.data.token);
-          // currentUser = data.data.user;
+          debugger;
+           auth.currentUserdata.group = data.data.user.group;
+
+          console.log(data.data)
+          // console.log(data.data.user.group);
+              // var group=data.data.user.group
+          // var currentUserdata = group;
 
      })
    };
@@ -40,17 +48,22 @@ app.factory('auth', ['$http', '$window', function($http, $window){
 
    auth.currentUser = function(){
      if(auth.isLoggedIn()){
+
        var token = auth.getToken();
        var decodedToken = JSON.parse($window.atob(token.split('.')[1]));
 
 
        //It's returning DATA from the User
-       return decodedToken.username;
+       return {current_user:decodedToken.username, 
+               current_id:decodedToken._id,
+               current_group: auth.currentUserdata.group 
+              }
      }
    };
 
    auth.logOut = function(){
      $window.localStorage.removeItem('rereddit-jwt');
+     auth.currentUserdata = {};
      currentUser = {};
    };
 

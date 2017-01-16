@@ -14,7 +14,7 @@
     "express-jwt": "^3.4.0",
     "jquery": "^2.2.3",
     "jsonwebtoken": "^6.2.0",
-    "mongoose": "^4.4.17",
+    "mongoose": "^4.7.6",
     "nchart": "^1.0.1",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0"

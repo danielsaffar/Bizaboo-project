@@ -12,16 +12,26 @@ app.config(['$stateProvider','$urlRouterProvider', function($stateProvider, $url
         }]
        }
     })
-    .state('expense', {
-      url: '/expenses/:id',
-      templateUrl: '/templates/posts.html',
-      controller: 'PostsCtrl',
+    .state('group', {
+      url: '/group',
+      templateUrl: '/templates/group.html',
+      controller: 'GroupCtrl',
       resolve: {
-        post: ['$stateParams', 'expenses', function($stateParams, expenses) {
-          return expenses.get($stateParams.id);
+        postPromise: ['expenses', function(expenses){
+          return expenses.getAll2();
         }]
-      }
+       }
     })
+    // .state('expense', {
+    //   url: '/expenses/:id',
+    //   templateUrl: '/templates/posts.html',
+    //   controller: 'PostsCtrl',
+    //   resolve: {
+    //     post: ['$stateParams', 'expenses', function($stateParams, expenses) {
+    //       return expenses.get($stateParams.id);
+    //     }]
+    //   }
+    // })
     .state('register', {
       url: '/register',
       controller: 'AuthCtrl',

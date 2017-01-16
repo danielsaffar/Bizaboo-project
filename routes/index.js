@@ -3,7 +3,7 @@ var router = express.Router()
 var mongoose = require('mongoose');
 var passport = require('passport');
 var expressJWT = require('express-jwt');
-var auth = expressJWT({secret: 'myLittleSecret'});
+var auth = expressJWT({secret: 'myLittleSecret',userProperty: 'payload'});
 
 
 
@@ -24,12 +24,14 @@ router.post('/register', function(req, res, next){
   user.username = req.body.username;
   user.setPassword(req.body.password);
   user.email=req.body.email;
+  user.group=req.body.group
 
 
   user.save(function (err){
     if(err){ return next(err); }
-
-    return res.json({token: user.generateJWT()})
+    console.log(user);
+    return res.json({token: user.generateJWT(),
+                     user:user                     })
   });
 });
 
@@ -50,7 +52,8 @@ router.post('/login', function(req, res, next){
     if(err){ return next(err); }
 
     if(user){
-      return res.json({token: user.generateJWT()});
+      return res.json({token: user.generateJWT(),
+                     user:user                     });
     } else {
       return res.status(401).json(info);
     }
@@ -58,15 +61,46 @@ router.post('/login', function(req, res, next){
 });
 
 router.get('/expenses',auth, function(req, res, next) {
-    Expense.find(function(err, expenses){
+  var author_id= req.payload._id;
+    Expense.find({author_id:author_id},
+    
+      function(err, expenses){
     if(err){ return next(err); }
 
     res.json(expenses);
   });
 });
 
+router.get('/group',auth, function(req, res, next) {
+  var author_id= req.payload._id;
+    Expense.find({author_id:author_id},
+    
+      function(err, expenses){
+    if(err){ return next(err); }
+
+    res.json(expenses);
+  });
+});
+
+router.put('/expenses', function(req, res, next) {
+  var id=req.body.id;
+  var amount_user=req.body.amount;
+
+
+Expense.findByIdAndUpdate(id, {$inc: {amount:amount_user}}, function (err, data) {
+
+res.json(data)
+});
+
+});
+
+
+
 router.post('/expenses', function(req, res, next) {
-  var expense = new Expense(req.body);
+
+   var expense = new Expense(req.body);
+
+
 
   console.log(req.user);
 
@@ -75,7 +109,9 @@ router.post('/expenses', function(req, res, next) {
 
     res.json(expense);
   });
+
 });
+
 
 router.param('expense', function(req, res, next, id) {
   var query = Expense.findById(id);
@@ -124,22 +160,5 @@ router.get('/expenses/:post', function(req, res, next) {
     res.json(post);
   });
 });
-
-// router.put('/expenses/:post/upvote', function(req, res, next) {
-//   req.post.upvote();
-
-
-//   req.post.save(function(err, post) {
-//     res.json(post);
-//   });
-// });
-
-// router.put('/expenses/:post/comments/:comment/upvote', function(req, res, next) {
-//   req.comment.upvote();
-
-//   req.comment.save(function(err, comment) {
-//     res.json(comment);
-//   });
-// });
 
 module.exports = router;
