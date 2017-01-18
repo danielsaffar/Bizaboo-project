@@ -1,17 +1,19 @@
 app.controller('GroupCtrl', ['$scope', 'expenses','auth', function($scope, expenses,auth){
   $scope.userinfo= expenses.expenses;
   var userData = [];
-
   var data= expenses.expenses;
+    $scope.currentGroup = data[0].group;
+
+
 
   $scope.exist= function () {
     userData=[];
       for(var i=0 ; i< data.length ; i++){
-        if( data[i].category === $scope.category ){
-            expenses.modify({ 
+        if( data[i].category === $scope.category && data[i].group === auth.currentUserdata.group ){
+            expenses.modifyGroup({ 
             category:$scope.category,
             amount:$scope.amount,
-            id: data[i]._id
+            group: auth.currentUserdata.group,
             
           }).then(function(){
              var dat= expenses.expenses;
@@ -29,27 +31,57 @@ app.controller('GroupCtrl', ['$scope', 'expenses','auth', function($scope, expen
 }
 
 
- $scope.query = function(dat) {
-        userData= [];
+ $scope.query = function(data) {
 
-        for(var i=0 ; i< dat.length ; i++){
+    grouped = [];
 
-          var userdata1= {
-            key: dat[i].category,
-            y: dat[i].amount          
-          };
-            console.log("1" + userData)
-            userData.push(userdata1);
-            console.log('2' + userData);
-            
-        $scope.data = userData;
+        data.forEach(function (o) {
+            if (!this[o.category]) {
+            this[o.category] = { category: o.category, amount: 0 };
+            grouped.push(this[o.category]);
+      }
+    this[o.category].amount += o.amount;
+}, Object.create(null));
 
-            
-        }
+  console.log(grouped);
 
       };
 
-      $scope.query(expenses.expenses);
+      $scope.query(data);
+      console.log(grouped)
+
+      var databeforeFormat = grouped
+
+          // Launching the chart with formatted value
+
+     chartLauncher = function (databeforeFormat)  {
+
+      var formatData= [];
+
+        for(var i=0 ; i< databeforeFormat.length ; i++){
+
+          var userdata1= {
+            key: databeforeFormat[i].category,
+            y: databeforeFormat[i].amount          
+          };
+            formatData.push(userdata1);
+        console.log(formatData);
+
+        $scope.data = formatData;
+
+        }
+     }  
+
+
+     chartLauncher(grouped);   
+
+
+
+
+
+
+
+
 
   
   $scope.addExpense = function() {

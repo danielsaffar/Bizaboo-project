@@ -1,14 +1,27 @@
 
+
+    <h2>{{currentGroup}}</h2>
+
+
+
     <nvd3 options="options" data="data"></nvd3>
 
-<form ng-submit="addExpense()">
+
+<form ng-submit="addxpense()">
   <h3>Add a new Expense</h3>
 
-  <div class="form-group">
-    <input type="text" class="form-control" placeholder="Category" ng-model="category"></input>
-    <input type="text" class="form-control" placeholder="Amount" ng-model="amount"></input>
-  </div>
 
 
   <button type="submit" class="btn btn-primary">Post</button>
 </form>
+
+
+
+<div ng-repeat="expense in userinfo | orderBy:'category'">
+ 
+<span> {{expense.category}} : {{expense.amount}} By " " {{expense.author}} </span>
+
+
+</div>
+
+

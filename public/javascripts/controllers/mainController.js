@@ -1,4 +1,4 @@
-app.controller('MainCtrl', ['$scope', 'expenses','auth','$http', function($scope, expenses,auth,$http){
+app.controller('MainCtrl', ['$scope', 'expenses','auth', function($scope, expenses,auth){
   $scope.userinfo= expenses.expenses;
   var userData = [];
 

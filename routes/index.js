@@ -73,8 +73,8 @@ router.get('/expenses',auth, function(req, res, next) {
 
 
 router.get('/group',auth, function(req, res, next) {
-  // var author_id= req.payload._id;
-    Expense.find({group: 'arr'},
+  var userGroup= req.payload.group;
+    Expense.find({group: userGroup},
     
       function(err, expenses){
     if(err){ return next(err); }
@@ -82,6 +82,35 @@ router.get('/group',auth, function(req, res, next) {
     res.json(expenses);
   });
 });
+
+
+
+
+router.post('/group', function(req, res, next) {
+
+   var expense = new Expense(req.body);
+
+  console.log(req.user);
+
+  expense.save(function(err, expense){
+    if(err){ return next(err); }
+
+    res.json(expense);
+  });
+
+});
+
+router.put('/group', function(req, res, next) {
+  var category=req.body.category;
+  var amount_user=req.body.amount;
+
+Expense.find(category, {$inc: {amount:amount_user}}, function (err, data) {
+
+res.json(data)
+});
+
+});
+
 
 router.put('/expenses', function(req, res, next) {
   var id=req.body.id;
@@ -95,14 +124,9 @@ res.json(data)
 
 });
 
-
-
 router.post('/expenses', function(req, res, next) {
 
    var expense = new Expense(req.body);
-
-
-
   console.log(req.user);
 
   expense.save(function(err, expense){

@@ -1,7 +1,9 @@
 app.factory('expenses', ['$http','auth', function($http, auth) {
+    dat = auth.currentUserdata.group;
   var expenseService = {
     expenses: [],
 
+    
     getAll: function() {
       return $http.get('/expenses',{
          headers: {
@@ -12,9 +14,8 @@ app.factory('expenses', ['$http','auth', function($http, auth) {
       });
     },
 
-
-        getAllGroup: function() {
-      return $http.get('/group' ,{
+    getAllGroup: function(dat) {
+      return $http.get('/group'  , {
          headers: {
           "Authorization": 'Bearer ' + auth.getToken()}
       }).then(function(data) {
@@ -23,7 +24,12 @@ app.factory('expenses', ['$http','auth', function($http, auth) {
       });
     },
 
-
+    create: function(expense) {
+      return $http.post('/expenses', expense).then(function(data){
+        expenseService.expenses.push(data.data);
+        
+      });
+    },
 
     get: function(id) {
       return $http.get('/expenses/' + id).then(function(res){
@@ -31,14 +37,6 @@ app.factory('expenses', ['$http','auth', function($http, auth) {
       });
     },
 
-    // getSum: function() {
-    //   return $http.get('/expenses',{
-    //     headers: {
-    //       "Authorization":'Bearer' + auth.getToken()}
-    //   }).then(function(data) {
-    //     return data
-    //   })
-    // }
 
     modify: function(expense) {
       return $http.put('/expenses', expense).then(function(data){
@@ -53,12 +51,28 @@ app.factory('expenses', ['$http','auth', function($http, auth) {
       });
     },
 
-    create: function(expense) {
-      return $http.post('/expenses', expense).then(function(data){
-        expenseService.expenses.push(data.data);
-        
+
+    modifyGroup: function(expense) {
+      return $http.put('/group', expense).then(function(data){
+        // return data.data;
+        return $http.get('/group',{
+         headers: {
+          "Authorization": 'Bearer ' + auth.getToken()}
+      }).then(function(data) {
+  
+        angular.copy(data.data, expenseService.expenses);
+      });
       });
     },
+
+    // getSum: function() {
+    //   return $http.get('/expenses',{
+    //     headers: {
+    //       "Authorization":'Bearer' + auth.getToken()}
+    //   }).then(function(data) {
+    //     return data
+    //   })
+    // }
 
     upvote: function(post) {
       // TODO: Finish
