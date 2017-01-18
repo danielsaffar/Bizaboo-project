@@ -1,5 +1,6 @@
 app.controller('MainCtrl', ['$scope', 'expenses','auth', function($scope, expenses,auth){
   $scope.userinfo= expenses.expenses;
+  // var userData= dat;
   var userData = [];
 
   var data= expenses.expenses;
@@ -33,6 +34,7 @@ app.controller('MainCtrl', ['$scope', 'expenses','auth', function($scope, expens
 }
 
 
+
  $scope.query = function(dat) {
         userData= [];
 
@@ -48,6 +50,18 @@ app.controller('MainCtrl', ['$scope', 'expenses','auth', function($scope, expens
             
         $scope.data = userData;
 
+    
+Sum=function(userData)
+{
+    var a = userData[0].y;
+    for (var i = 1; i < userData.length; i++) {
+        a = a + userData[i].y;
+    };
+    $scope.sumSingleUser= a
+    return a;
+};   
+Sum(userData);
+
             
         }
 
@@ -55,9 +69,11 @@ app.controller('MainCtrl', ['$scope', 'expenses','auth', function($scope, expens
 
       $scope.query(expenses.expenses);
 
+
+
   
   $scope.addExpense = function() {
-    if ($scope.category === '') { return; }
+    if ($scope.category === '' || $scope.amount === '' ) { return  $scope.category = ''; }
 if (!$scope.exist(data))
     {
     expenses.create({ 
@@ -109,18 +125,4 @@ $scope.options = {
         };
 
 
-    //Secure the Profile User    
-
-
-
-
-
-
-
-//creates the chart with test data...
-
-
-  // $scope.incrementUpvotes = function(item) {
-  //   posts.upvote(item);
-  // }
 }]);

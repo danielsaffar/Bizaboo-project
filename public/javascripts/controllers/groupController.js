@@ -6,30 +6,31 @@ app.controller('GroupCtrl', ['$scope', 'expenses','auth', function($scope, expen
 
 
 
-  $scope.exist= function () {
-    userData=[];
-      for(var i=0 ; i< data.length ; i++){
-        if( data[i].category === $scope.category && data[i].group === auth.currentUserdata.group ){
-            expenses.modifyGroup({ 
-            category:$scope.category,
-            amount:$scope.amount,
-            group: auth.currentUserdata.group,
+//   $scope.exist= function () {
+//     userData=[];
+//       for(var i=0 ; i< data.length ; i++){
+//         if( data[i].category === $scope.category && data[i].group === auth.currentUserdata.group ){
+//             expenses.modifyGroup({ 
+//             category:$scope.category,
+//             amount:$scope.amount,
+//             group: auth.currentUserdata.group,
             
-          }).then(function(){
-             var dat= expenses.expenses;
+//           }).then(function(){
+//              var dat= expenses.expenses;
         
        
-      $scope.query(dat);
+//       $scope.query(dat);
               
-              $scope.category = '';
-              $scope.amount = '';
-})
-              return true;
-};
-     }
-  return false;
-}
+//               $scope.category = '';
+//               $scope.amount = '';
+// })
+//               return true;
+// };
+//      }
+//   return false;
+// }
 
+// Allow to regroup the expenses of the same category
 
  $scope.query = function(data) {
 
@@ -70,10 +71,23 @@ app.controller('GroupCtrl', ['$scope', 'expenses','auth', function($scope, expen
         $scope.data = formatData;
 
         }
-     }  
+        console.log(formatData)
+        // var datatotheSum= formatData;
+     } 
+     chartLauncher(grouped);
 
 
-     chartLauncher(grouped);   
+     Sum=function(data)
+{
+    var a = data[0].amount;
+    for (var i = 1; i < data.length; i++) {
+        a = a + data[i].amount;
+    }
+    console.log(a);
+    $scope.sum = a;
+    return a;
+};   
+Sum(data);
 
 
 

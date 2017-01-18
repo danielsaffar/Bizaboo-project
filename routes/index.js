@@ -178,12 +178,6 @@ router.post('/expenses/:expense/comments', function(req, res, next) {
   });
 });
 
-router.get('/expenses/:post', function(req, res, next) {
-  req.post.populate('comments', function(err, post) {
-    if (err) { return next(err); }
 
-    res.json(post);
-  });
-});
 
 module.exports = router;
