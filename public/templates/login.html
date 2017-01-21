@@ -1,13 +1,11 @@
-<form ng-submit="logIn()">
-  <h3>Login</h3>
-
-  <div class="form-group">
-    <input type="text" class="form-control" placeholder="Username" ng-model="user.username"></input>
+<div class="wrapper">
+    <form class="form-signin" ng-submit="logIn()">       
+      <h2 class="form-signin-heading">Please login</h2>
+      <input type="text" class="form-control" name="username" placeholder="Username" required="" autofocus="" ng-model="user.username"/>
+      <input type="password" class="form-control" name="password" placeholder="Password" required="" ng-model="user.password"/>      
+      <label class="checkbox">
+        <input type="checkbox" value="remember-me" id="rememberMe" name="rememberMe"> Remember me
+      </label>
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>   
+    </form>
   </div>
-
-  <div class="form-group">
-    <input type="password" class="form-control" placeholder="Password" ng-model="user.password"></input>
-  </div>
-
-  <button type="submit" class="btn btn-primary">Login</button>
-</form>

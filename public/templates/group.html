@@ -1,29 +1,25 @@
+<br>
+<div style="text-align: center; color: black; border-style: solid; width: 25%; margin-left: 36%; box-shadow: 5px 5px 5px yellow ; background-color: white;"><b><h2 style="text-align: center; font-family: 'Catamaran'; font-size: 40px;">{{currentGroup}}</h2></b></div>
 
-
-    <h2>{{currentGroup}}</h2>
-
-
+<br>
 
     <nvd3 options="options" data="data"></nvd3>
 
 
-<form ng-submit="addxpense()">
-  <h3>Add a new Expense</h3>
 
-
-
-  <button type="submit" class="btn btn-primary">Post</button>
-</form>
-
-
-
-<div ng-repeat="expense in userinfo | orderBy:'category'">
+<div ng-repeat="expense in userinfo | orderBy:'category'" style="text-align: center; color: black;font-size: 20px; border-style: solid; width: 25%; margin-left: 36%; box-shadow: 5px 5px 5px yellow; background-color: white;"">
  
-<span> {{expense.category}} : {{expense.amount}} By " " {{expense.author}} </span>
-
-
+<span> <span style="color: black;">{{expense.category}}</span> : <span style="color:black;">{{expense.amount}}</span>  by  <span style="color: black;">{{expense.author}}</span> </span>
 
 </div>
 
-<span>All the group expenses:  {{sum}}</span>
+<br>
+
+<span style="color: white; font-size: 20px; margin-left: 450px;">All the group expenses: <spans style="text-decoration: underline;">{{sum}}</span> </span>
+
+<br>
+<br>
+<br>
+<br>
+<br>
 

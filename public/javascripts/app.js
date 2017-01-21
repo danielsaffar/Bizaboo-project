@@ -37,6 +37,11 @@ app.config(['$stateProvider','$urlRouterProvider', function($stateProvider, $url
       controller: 'AuthCtrl',
       templateUrl: '/templates/register.html'
     })
+    .state('page', {
+      url: '/page',
+      controller: 'MainCtrl',
+      templateUrl: '/templates/page.html'
+    })
     .state('login', {
       url: '/login',
       controller: 'AuthCtrl',

@@ -102,7 +102,7 @@ if (!$scope.exist(data))
 $scope.options = {
             chart: {
                 type: 'pieChart',
-                height: 650,
+                height: 550,
                 useInteractiveGuideline: true,
 
                 x: function(d){return d.key;},
