@@ -5,6 +5,7 @@ body {
   font-size: 1em
 }
 
+
 .nv-label text{
     font-size:10px;
     font-family: 'Roboto Condensed', cursive;
@@ -143,7 +144,6 @@ color: white;
   margin: 0 auto;
   background-color: #fff;
   border: 3px solid orange;
-  box-shadow: 10px 10px 5px yellow; 
 
   .form-signin-heading,
   .checkbox {

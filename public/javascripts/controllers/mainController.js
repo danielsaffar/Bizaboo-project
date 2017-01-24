@@ -112,7 +112,7 @@ $scope.options = {
                 donut:true,
                 donutRatio:0.3,
                 labelThreshold: 0.01,
-                labelSunbeamLayout: true,
+                labelSunbeamLayout: false,
                 legend: {
                     margin: {
                         top: 5,
