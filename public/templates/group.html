@@ -1,21 +1,33 @@
 <br>
-<div style="text-align: center; color: black; border-style: solid; width: 25%; margin-left: 36%; box-shadow: 5px 5px 5px yellow ; background-color: white;"><b><h2 style="text-align: center; font-family: 'Catamaran'; font-size: 40px;">{{currentGroup}}</h2></b></div>
-
+<div class="btn btn-outline btn-xl page-scroll" style="margin-left: 440px;"><b><h2>{{currentGroup}}</h2></b></div>
+<br>
 <br>
 
+   
     <nvd3 options="options" data="data"></nvd3>
 
 
-
-<div ng-repeat="expense in userinfo | orderBy:'category'" style="text-align: center; color: black;font-size: 20px; border-style: solid; width: 25%; margin-left: 36%; box-shadow: 5px 5px 5px yellow; background-color: white;"">
- 
-<span> <span style="color: black;">{{expense.category}}</span> : <span style="color:black;">{{expense.amount}}</span>  by  <span style="color: black;">{{expense.author}}</span> </span>
-
-</div>
-
-<br>
-
-<span style="color: white; font-size: 20px; margin-left: 450px;">All the group expenses: <spans style="text-decoration: underline;">{{sum}}</span> </span>
+<table class="table-fill">
+<thead>
+<tr>
+<th class="text-left">Author</th>
+<th class="text-left">Category</th>
+<th class="text-left">Amount</th>
+</tr>
+</thead>
+<tbody class="table-hover">
+<tr ng-repeat="expense in userinfo | orderBy:'category'">
+<td class="text-left">{{expense.author}}</td>
+<td class="text-left">{{expense.category}}</td>
+<td class="text-left">{{expense.amount}}</td>
+</tr>
+<tr>
+<td class="text-left"></td>
+<td class="text-left">Total Expense</td>
+<td class="text-left">{{sum}}</td>
+</tr>
+</tbody>
+</table>
 
 <br>
 <br>

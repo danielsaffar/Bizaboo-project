@@ -142,9 +142,9 @@ $scope.options = {
                 legend: {
                     margin: {
                         top: 5,
-                        right: 35,
+                        right: 95,
                         bottom: 5,
-                        left: 0
+                        left: -90
                     }
                 }
             }

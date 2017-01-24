@@ -102,7 +102,7 @@ if (!$scope.exist(data))
 $scope.options = {
             chart: {
                 type: 'pieChart',
-                height: 550,
+                height: 450,
                 useInteractiveGuideline: true,
 
                 x: function(d){return d.key;},
@@ -116,9 +116,9 @@ $scope.options = {
                 legend: {
                     margin: {
                         top: 5,
-                        right: 35,
+                        right: 215,
                         bottom: 5,
-                        left: 0
+                        left: -90
                     }
                 }
             }
