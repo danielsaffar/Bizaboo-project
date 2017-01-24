@@ -2,7 +2,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/bizaboo');
+mongoose.connect(process.env.MONGOLAB_BRONZE_URI ||'mongodb://localhost/budgabo-budget-monitor');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -20,6 +20,6 @@ app.use('/users', users);
 
 
 
-var port = process.env.PORT || '5000';
+var port = process.env.PORT || '4000';
 
 app.listen(port);
